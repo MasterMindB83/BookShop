@@ -47,4 +47,9 @@ export class RegisterUpComponent implements OnInit {
       alert('Password not the same.');
     }
   }
+  keyDown(event) {
+    if (event.key === 'Enter') {
+      this.registerUp();
+    }
+  }
 }

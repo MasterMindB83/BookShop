@@ -25,7 +25,6 @@ export class LoginComponent implements OnInit {
       if (this.exists === 1) {
         this.data.getUser(this.username).subscribe((data2: IUser) => {
           this.user = data2[0];
-          alert(this.username);
           EmitterService.login.emit(this.user);
           this.router.navigate(['/']);
         });
@@ -33,5 +32,10 @@ export class LoginComponent implements OnInit {
         alert('Wrong username or password.');
       }
     });
+  }
+  keyDown(event) {
+    if (event.key === 'Enter') {
+      this.login();
+    }
   }
 }

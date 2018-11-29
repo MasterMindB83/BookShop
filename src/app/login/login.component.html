@@ -2,11 +2,11 @@
   <table>
     <tr>
       <td>Username:</td>
-      <td><input type="string" [(ngModel)]="username" (keydown)="login()"></td>
+      <td><input type="string" [(ngModel)]="username" (keydown)="keyDown($event)"></td>
     </tr>
     <tr>
         <td>Password:</td>
-        <td><input type="password" [(ngModel)]="password" (keydown)="login()"></td>
+        <td><input type="password" [(ngModel)]="password" (keydown)="keyDown($event)"></td>
     </tr>
   </table>
   <button (click)="login()">Login</button>
