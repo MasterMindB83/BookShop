@@ -1,0 +1,10 @@
+<div class="link">
+  <table class="main-link">
+    <tr>
+  <td *ngIf="!user" routerLink="login">Login | </td>
+  <td *ngIf="!user" routerLink="registerup">RegisterUp | </td>
+  <td *ngIf="user" routerLink="user">{{user.name}} | </td>
+  <td *ngIf="user">Odjava | </td>
+</tr>
+</table>
+</div>
