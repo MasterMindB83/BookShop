@@ -11,4 +11,10 @@ export class DataService {
     return this.http.post('http://localhost:3000/adduser',
     {username: username1, name: name1, e_mail1: e_mail1, address: address1, phone: phone1, password: password1});
   }
+  login(username, password) {
+    return this.http.get('http://localhost:3000/login/' + username + '/' + password);
+  }
+  getUser(username) {
+    return this.http.get('http://localhost:3000/users/' + username);
+  }
 }

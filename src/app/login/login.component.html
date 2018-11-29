@@ -1,3 +1,13 @@
-<p>
-  login works!
-</p>
+<div>
+  <table>
+    <tr>
+      <td>Username:</td>
+      <td><input type="string" [(ngModel)]="username" (keydown)="login()"></td>
+    </tr>
+    <tr>
+        <td>Password:</td>
+        <td><input type="password" [(ngModel)]="password" (keydown)="login()"></td>
+    </tr>
+  </table>
+  <button (click)="login()">Login</button>
+</div>

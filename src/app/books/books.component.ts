@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser } from '../interfaces';
-import { emit } from 'cluster';
 
 @Component({
   selector: 'app-books',
@@ -18,8 +17,10 @@ export class BooksComponent implements OnInit {
       name: localStorage.getItem('name'),
       address: localStorage.getItem('address'),
       e_mail: localStorage.getItem('e_mail'),
-      phone: localStorage.getItem('phone')
+      phone: localStorage.getItem('phone'),
+      password: localStorage.getItem('password')
     };
   }
+  
 
 }

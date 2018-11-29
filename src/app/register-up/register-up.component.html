@@ -2,31 +2,31 @@
   <table>
     <tr>
       <td>Username:</td>
-      <td><input type="text" [(ngModel)]="username"></td>
+      <td><input type="text" [(ngModel)]="username" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>Name:</td>
-      <td><input type="text" [(ngModel)]="name"></td>
+      <td><input type="text" [(ngModel)]="name" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>E-mail:</td>
-      <td><input type="text" [(ngModel)]="e_mail"></td>
+      <td><input type="text" [(ngModel)]="e_mail" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>Adress:</td>
-      <td><input type="text" [(ngModel)]="address"></td>
+      <td><input type="text" [(ngModel)]="address" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>Phone:</td>
-      <td><input type="text" [(ngModel)]="phone"></td>
+      <td><input type="text" [(ngModel)]="phone" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>Password:</td>
-      <td><input type="password" [(ngModel)]="password"></td>
+      <td><input type="password" [(ngModel)]="password" (keydown)="registerUp()"></td>
     </tr>
     <tr>
       <td>Repeat password:</td>
-      <td><input type="password" [(ngModel)]="password2"></td>
+      <td><input type="password" [(ngModel)]="password2" (keydown)="registerUp()"></td>
     </tr>
   </table>
   <button (click)="registerUp()">Register Up</button>

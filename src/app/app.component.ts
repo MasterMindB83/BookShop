@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Output, OnInit } from '@angular/core';
 import { IUser } from './interfaces';
 
 @Component({
@@ -8,6 +8,7 @@ import { IUser } from './interfaces';
 })
 export class AppComponent {
   title = 'BookShop';
-  user: IUser;
-  @Output() emiter = new EventEmitter();
+  /*ngOnInit(): void {
+    this.room = Math.round(Math.random() * 10000);
+  }*/
 }

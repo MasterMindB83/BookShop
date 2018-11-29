@@ -5,9 +5,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 })
 export class EmitterService {
 
-  emitter = new EventEmitter();
+  static login = new EventEmitter();
   constructor() { }
-  sendMessage(data: Object) {
-    this.emitter.emit(data);
-  }
 }
