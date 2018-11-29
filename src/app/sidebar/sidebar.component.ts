@@ -21,5 +21,6 @@ export class SidebarComponent implements OnInit {
   }
   logOut() {
     this.user = null;
+    EmitterService.login.emit(this.user);
   }
 }
