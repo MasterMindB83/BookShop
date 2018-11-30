@@ -95,6 +95,18 @@ app.get("/books/:name/:genre/:index/:count",(req,res) => {
             res.send(rows);
     })
 });
+app.get("/books/:id",(req,res) => {
+    let params=req.params;
+    let sql="select * from books where id=?";
+    
+    mySqlConnection.query(sql,[params.id],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 app.get("/booksno/:name/:genre",(req,res) => {
     let params=req.params;
     let sql="select count(*) count from (select *,@row_number:=@row_number + 1 row_number from books,(select @row_number :=0) r";

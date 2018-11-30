@@ -12,7 +12,7 @@
   <br>
   <table>
     <tr>
-      <td *ngIf="books[0]" class="book">
+      <td *ngIf="books[0]" class="book" routerLink="books/{{books[0].id}}">
         <img src="./assets/{{books[0].image}}">
         <p>{{books[0].name}}</p>
         <p>{{books[0].author}}</p>

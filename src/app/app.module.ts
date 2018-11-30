@@ -12,6 +12,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { DataService } from './data.service';
 import {FormsModule} from '@angular/forms';
 import { EmitterService } from './emitter.service';
+import { BookComponent } from './book/book.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +21,8 @@ import { EmitterService } from './emitter.service';
     LoginComponent,
     BooksComponent,
     UserComponent,
-    RegisterUpComponent
+    RegisterUpComponent,
+    BookComponent
   ],
   imports: [
     BrowserModule,

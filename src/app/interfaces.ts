@@ -11,6 +11,7 @@ export interface IBook {
     description: string;
     author: string;
     genre: string;
+    image: string;
     price: number;
     discount: number;
 }
