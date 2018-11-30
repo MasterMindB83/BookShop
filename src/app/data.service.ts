@@ -17,4 +17,8 @@ export class DataService {
   getUser(username) {
     return this.http.get('http://localhost:3000/users/' + username);
   }
+  updateUser(username, name, phone, address, e_mail, password) {
+    return this.http.post('http://localhost:3000/updateuser',
+    {username: username, name: name, address: address, e_mail: e_mail, phone: phone, password: password});
+  }
 }

@@ -38,6 +38,12 @@ export class RegisterUpComponent implements OnInit {
               password: this.password,
               phone: this.phone
             };
+            localStorage.setItem('username', this.user.username);
+            localStorage.setItem('name', this.user.name);
+            localStorage.setItem('e_mail', this.user.e_mail);
+            localStorage.setItem('phone', this.user.phone);
+            localStorage.setItem('password', this.user.password);
+            localStorage.setItem('address', this.user.address);
             EmitterService.login.emit(this.user);
             this.router.navigate(['/']);
           });

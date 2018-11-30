@@ -26,6 +26,12 @@ export class LoginComponent implements OnInit {
         this.data.getUser(this.username).subscribe((data2: IUser) => {
           this.user = data2[0];
           EmitterService.login.emit(this.user);
+          localStorage.setItem('username', this.user.username);
+          localStorage.setItem('name', this.user.name);
+          localStorage.setItem('e_mail', this.user.e_mail);
+          localStorage.setItem('phone', this.user.phone);
+          localStorage.setItem('password', this.user.password);
+          localStorage.setItem('address', this.user.address);
           this.router.navigate(['/']);
         });
       } else {

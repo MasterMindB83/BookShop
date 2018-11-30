@@ -57,6 +57,17 @@ app.get("/users/:username",(req,res) => {
             res.send(rows);
     })
 });
+app.post("/updateuser",(req,res) => {
+    let user=req.body;
+    mySqlConnection.query("update users set username=?,name=?,phone=?,address=?,e_mail=?,password=? where username like ?",
+        [req.body.username,req.body.name,req.body.phone,req.body.address,req.body.e_mail,req.body.password,req.body.username],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 io.on('connection',(socket) => {
     console.log('New connection made.');
     socket.on('login',(data) =>{
