@@ -10,6 +10,11 @@
 <div>
   <br>
   <br>
+  <button (click)="decrease()"><</button>
+  {{index}}/{{maxIndex}}
+  <button (click)="increase()">></button>
+  <br>
+  <br>
   <table>
     <tr>
       <td *ngIf="books[0]" class="book" routerLink="books/{{books[0].id}}">
@@ -145,4 +150,9 @@
         </td>
   </tr>
   </table>
+  <br>
+  <br>
+  <button (click)="decrease()"><</button>
+  {{index}}/{{maxIndex}}
+  <button (click)="increase()">></button>
 </div>

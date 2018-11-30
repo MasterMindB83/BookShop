@@ -20,7 +20,9 @@ export class SidebarComponent implements OnInit {
     });
   }
   logOut() {
-    this.user = null;
-    EmitterService.login.emit(this.user);
+    if (confirm('Are you sure you want to logout?')) {
+      this.user = null;
+      EmitterService.login.emit(this.user);
+    }
   }
 }

@@ -16,6 +16,7 @@ export class BooksComponent implements OnInit {
   genre: string;
   name: string;
   booksNo: number;
+  maxIndex: number;
   constructor(private data: DataService) { }
 
   ngOnInit() {
@@ -38,7 +39,11 @@ export class BooksComponent implements OnInit {
   }
   refreshDataFull() {
     this.data.getBooksNo(this.genre, this.name).subscribe((data) => {
-      this.books = data[0].count;
+      this.booksNo = data[0].count;
+      this.maxIndex = Math.round(this.booksNo / this.count);
+      if (this.count * this.maxIndex < this.booksNo) {
+        this.maxIndex ++;
+      }
       this.index = 1;
       this.data.getBooks(this.count, this.index, this.genre, this.name).subscribe((data2: IBook[]) => {
         this.books = data2;
@@ -47,5 +52,17 @@ export class BooksComponent implements OnInit {
   }
   search() {
     this.refreshDataFull();
+  }
+  increase() {
+    if (this.index < this.maxIndex) {
+      this.index++;
+      this.refreshData();
+    }
+  }
+  decrease() {
+    if  (this.index > 1) {
+      this.index --;
+      this.refreshData();
+    }
   }
 }

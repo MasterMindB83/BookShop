@@ -3,8 +3,9 @@
   <p><strong>{{book.name}}</strong></p>
   <p>{{book.author}}</p>
   <p>{{book.genre}}</p>
-  <p>Cena:{{book.price}} din</p>
-  <p>{{book.discount}} din</p>
+  <p>Cena:{{book.price | number:'1.2'}} din</p>
+  <p><strong>{{book.discount | number:'1.2'}} din</strong></p>
   <p>Ustedite {{usteda | number:'1.2'}} din ({{procenat}}%)</p>
+  <p>Opis:</p>
   <p>{{book.description}}</p>
 </div>
