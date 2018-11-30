@@ -1,6 +1,10 @@
-<img src="./assets/{{book.image}}">
-<p>{{book.name}}</p>
-<p>{{book.author}}</p>
-<p>{{book.genre}}</p>
-<p>{{book.price}} din</p>
-<p>{{book.discount}} din</p>
+<div class="book">
+  <img src="./assets/{{book.image}}">
+  <p><strong>{{book.name}}</strong></p>
+  <p>{{book.author}}</p>
+  <p>{{book.genre}}</p>
+  <p>Cena:{{book.price}} din</p>
+  <p>{{book.discount}} din</p>
+  <p>Ustedite {{usteda | number:'1.2'}} din ({{procenat}}%)</p>
+  <p>{{book.description}}</p>
+</div>

@@ -43,4 +43,7 @@ export class DataService {
     }
     return this.http.get('http://localhost:3000/booksno/' + name2 + '/' + genre2);
   }
+  getBook(id) {
+    return this.http.get('http://localhost:3000/books/' + id );
+  }
 }
