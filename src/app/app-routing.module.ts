@@ -5,6 +5,8 @@ import { LoginComponent } from './login/login.component';
 import { UserComponent } from './user/user.component';
 import { RegisterUpComponent } from './register-up/register-up.component';
 import { BookComponent } from './book/book.component';
+import { KorpaComponent } from './korpa/korpa.component';
+import { ListaZeljaComponent } from './lista-zelja/lista-zelja.component';
 
 const routes: Routes = [
   {
@@ -26,6 +28,14 @@ const routes: Routes = [
   {
     path: 'books/:id',
     component: BookComponent
+  },
+  {
+    path: 'korpa',
+    component: KorpaComponent
+  },
+  {
+    path: 'listazelja',
+    component: ListaZeljaComponent
   }
 ];
 

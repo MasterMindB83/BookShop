@@ -13,6 +13,8 @@ import { DataService } from './data.service';
 import {FormsModule} from '@angular/forms';
 import { EmitterService } from './emitter.service';
 import { BookComponent } from './book/book.component';
+import { KorpaComponent } from './korpa/korpa.component';
+import { ListaZeljaComponent } from './lista-zelja/lista-zelja.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { BookComponent } from './book/book.component';
     BooksComponent,
     UserComponent,
     RegisterUpComponent,
-    BookComponent
+    BookComponent,
+    KorpaComponent,
+    ListaZeljaComponent
   ],
   imports: [
     BrowserModule,

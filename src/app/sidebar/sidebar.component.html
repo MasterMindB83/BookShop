@@ -1,11 +1,20 @@
 <div class="link">
   <table class="main-link">
     <tr>
-  <td routerLink="/">| Books |</td>
-  <td *ngIf="!user" routerLink="login"> Login | </td>
-  <td *ngIf="!user" routerLink="registerup">RegisterUp | </td>
-  <td *ngIf="user" routerLink="user">{{user.name}} | </td>
-  <td *ngIf="user" (click)="logOut()">Odjava |</td>
-</tr>
-</table>
+      <td routerLink="/">| Books |</td>
+      <td *ngIf="!user" routerLink="login"> Login | </td>
+      <td *ngIf="!user" routerLink="registerup">RegisterUp | </td>
+      <td *ngIf="user" routerLink="user">{{user.name}} | </td>
+      <td *ngIf="user" (click)="logOut()">Odjava |</td>
+    </tr>
+  </table>
+  <br>
+  <br>
+  <div class="korpa">
+    <img src="./assets/korpa.png" routerLink="korpa"> 
+    <a routerLink="korpa">Korpa</a>
+    &nbsp;
+    <img src="./assets/zelje.png" routerLink="listazelja"> 
+    <a routerLink="listazelja">Lista želja</a>
+  </div>
 </div>
