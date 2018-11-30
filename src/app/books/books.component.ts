@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { IUser } from '../interfaces';
+import { IUser, IBook } from '../interfaces';
+import {DataService} from '../data.service';
 
 @Component({
   selector: 'app-books',
@@ -9,9 +10,16 @@ import { IUser } from '../interfaces';
 export class BooksComponent implements OnInit {
 
   user: IUser;
-  constructor() { }
+  books: IBook[];
+  count: number;
+  index: number;
+  genre: string;
+  name: string;
+  constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.index = 1;
+    this.count = 40;
     this.user = {
       username: localStorage.getItem('username'),
       name: localStorage.getItem('name'),
@@ -20,7 +28,9 @@ export class BooksComponent implements OnInit {
       phone: localStorage.getItem('phone'),
       password: localStorage.getItem('password')
     };
+    this.data.getBooks(this.count, this.index, this.genre, this.name).subscribe((data: IBook[]) => {
+      this.books = data;
+    });
   }
-  
 
 }

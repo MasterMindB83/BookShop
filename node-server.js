@@ -68,6 +68,34 @@ app.post("/updateuser",(req,res) => {
             res.send(rows);
     })
 });
+app.get("/books/:name/:genre/:index/:count",(req,res) => {
+    let params=req.params;
+    let sql="select x.* from (select *,@row_number:=@row_number + 1 row_number from books,(select @row_number :=0) r";
+    let where = '';
+    if(params.name != '-1') {
+        where = "name like '%" +params.name + "%'";
+    }
+    if(params.genre != '-1') {
+        if(where == '')
+            where = "genre like '%" +params.genre + "%'";
+        else
+            where += " and genre like '%" +params.genre + "%'";
+    }
+    if(where != '')
+        where = ' where ' + where;
+    sql += where + ") x";
+    let startIndex=(params.index-1)*params.count + 1;
+    let endIndex=params.index*params.count;
+    sql += " where row_number >= "+startIndex + " and row_number <= " + endIndex;
+    console.log(endIndex);
+    mySqlConnection.query(sql,(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 io.on('connection',(socket) => {
     console.log('New connection made.');
     socket.on('login',(data) =>{

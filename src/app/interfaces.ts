@@ -6,3 +6,11 @@ export interface IUser {
     phone: string;
     password: string;
 }
+export interface IBook {
+    name: string;
+    description: string;
+    author: string;
+    genre: string;
+    price: number;
+    discount: number;
+}
