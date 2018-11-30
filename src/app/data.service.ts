@@ -49,4 +49,7 @@ export class DataService {
   getKorpa(username) {
     return this.http.get('http://localhost:3000/korpa/' + username );
   }
+  getListaZelja(username) {
+    return this.http.get('http://localhost:3000/listazelja/' + username );
+  }
 }
