@@ -12,6 +12,6 @@
       <td>{{book.discount?book.discount:book.price}}</td>
       <td>{{book.kolicina}}</td>
       <td>{{book.total | number:'1.2'}}</td>
-      <td><button>Add to cart</button></td>
+      <td><button (click)="moveTo(book.id)">Add to cart</button></td>
     </tr>
   </table>

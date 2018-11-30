@@ -52,4 +52,10 @@ export class DataService {
   getListaZelja(username) {
     return this.http.get('http://localhost:3000/listazelja/' + username );
   }
+  movetoCart(username, book) {
+    return this.http.post('http://localhost:3000/movetokorpa', {username: username, id: book });
+  }
+  movetoWishlist(username, book) {
+    return this.http.post('http://localhost:3000/movetolistazelja', {username: username, id: book });
+  }
 }

@@ -17,13 +17,20 @@ export class KorpaComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem('username');
     if (this.username) {
-      this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
-        this.books = data;
-      });
+      this.refreshData();
     }
     EmitterService.login.subscribe((data) => {
       this.username = localStorage.getItem('username');
     });
   }
-
+  moveTo(id) {
+    this.data.movetoWishlist(this.username, id).subscribe((data) => {
+      this.refreshData();
+    });
+  }
+  refreshData() {
+    this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
+      this.books = data;
+    });
+  }
 }

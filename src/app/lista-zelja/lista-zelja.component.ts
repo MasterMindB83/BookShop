@@ -16,12 +16,20 @@ export class ListaZeljaComponent implements OnInit {
 
   ngOnInit() {
     this.username = localStorage.getItem('username');
-    this.data.getListaZelja(this.username).subscribe((data: IBook[]) => {
-      this.books = data;
-    });
+    this.refreshData();
     EmitterService.login.subscribe((data) => {
       this.username = localStorage.getItem('username');
     });
   }
-
+  refreshData() {
+    this.data.getListaZelja(this.username).subscribe((data: IBook[]) => {
+      this.books = data;
+    });
+  }
+  moveTo(id) {
+    this.data.movetoCart(this.username, id).subscribe((data) => {
+      console.log('Moved to cart.');
+      this.refreshData();
+    });
+  }
 }
