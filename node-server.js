@@ -107,6 +107,18 @@ app.get("/books/:id",(req,res) => {
             res.send(rows);
     })
 });
+app.get("/korpa/:username",(req,res) => {
+    let params=req.params;
+    let sql="select b.*, k.kolicina, k.kolicina*ifnull(b.discount,b.price) total from books b, korpa k where b.id=k.book and k.user=?";
+    
+    mySqlConnection.query(sql,[params.username],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 app.get("/booksno/:name/:genre",(req,res) => {
     let params=req.params;
     let sql="select count(*) count from (select *,@row_number:=@row_number + 1 row_number from books,(select @row_number :=0) r";

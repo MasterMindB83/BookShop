@@ -1,3 +1,16 @@
-<p>
-  korpa works!
-</p>
+<table *ngIf="username">
+  <tr>
+    <th>Name</th>
+    <th>Author</th>
+    <th>Price</th>
+    <th>Amount</th>
+    <th>Total</th>
+  </tr>
+  <tr *ngFor="let book of books">
+    <td>{{book.name}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.discount?book.discount:book.price}}</td>
+    <td>{{book.kolicina}}</td>
+    <td>{{book.total | number:'1.2'}}</td>
+  </tr>
+</table>

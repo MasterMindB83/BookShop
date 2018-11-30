@@ -22,6 +22,7 @@ export class SidebarComponent implements OnInit {
   logOut() {
     if (confirm('Are you sure you want to logout?')) {
       this.user = null;
+      localStorage.setItem('username', '');
       EmitterService.login.emit(this.user);
     }
   }

@@ -46,4 +46,7 @@ export class DataService {
   getBook(id) {
     return this.http.get('http://localhost:3000/books/' + id );
   }
+  getKorpa(username) {
+    return this.http.get('http://localhost:3000/korpa/' + username );
+  }
 }

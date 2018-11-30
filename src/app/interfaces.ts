@@ -15,4 +15,6 @@ export interface IBook {
     image: string;
     price: number;
     discount: number;
+    kolicina: number;
+    total: number;
 }
