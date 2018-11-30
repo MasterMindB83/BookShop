@@ -15,6 +15,7 @@ export class BooksComponent implements OnInit {
   index: number;
   genre: string;
   name: string;
+  booksNo: number;
   constructor(private data: DataService) { }
 
   ngOnInit() {
@@ -28,9 +29,19 @@ export class BooksComponent implements OnInit {
       phone: localStorage.getItem('phone'),
       password: localStorage.getItem('password')
     };
+  }
+  refreshData() {
     this.data.getBooks(this.count, this.index, this.genre, this.name).subscribe((data: IBook[]) => {
       this.books = data;
     });
   }
-
+  refreshDataFull() {
+    this.data.getBooksNo(this.genre, this.name).subscribe((data) => {
+      this.books = data[0].count;
+      this.index = 1;
+      this.data.getBooks(this.count, this.index, this.genre, this.name).subscribe((data2: IBook[]) => {
+        this.books = data2;
+      });
+    });
+  }
 }

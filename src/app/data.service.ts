@@ -22,7 +22,6 @@ export class DataService {
     {username: username, name: name, address: address, e_mail: e_mail, phone: phone, password: password});
   }
   getBooks(count, index, genre, name) {
-    alert(genre);
     let genre2 = genre;
     let name2 = name;
     if (!genre) {
@@ -31,6 +30,17 @@ export class DataService {
     if (!name) {
       name2 = '-1';
     }
-    return this.http.get('http://localhost:3000/books/' + name2 + '/' + genre2);
+    return this.http.get('http://localhost:3000/books/' + name2 + '/' + genre2 + '/' + index + '/' + count);
+  }
+  getBooksNo(genre, name) {
+    let genre2 = genre;
+    let name2 = name;
+    if (!genre) {
+      genre2 = '-1';
+    }
+    if (!name) {
+      name2 = '-1';
+    }
+    return this.http.get('http://localhost:3000/booksno/' + name2 + '/' + genre2);
   }
 }
