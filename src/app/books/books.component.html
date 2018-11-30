@@ -1,3 +1,148 @@
-<p>
-  books works!
-</p>
+<div>
+  <a>Name:</a>
+  <input type="text" [(ngModel)]="name">
+  &nbsp;
+  <a>Genre:</a>
+  <input type="text" [(ngModel)]="genre">
+  &nbsp;
+  <button (click)="search()">Search</button>
+</div>
+<div>
+  <br>
+  <br>
+  <table>
+    <tr>
+      <td *ngIf="books[0]" class="book">
+        <img src="./assets/{{books[0].image}}">
+        <p>{{books[0].name}}</p>
+        <p>{{books[0].author}}</p>
+        <p>{{books[0].genre}}</p>
+        <p>{{books[0].discount?books[0].discount:books[0].price}} din</p>
+      </td>
+      <td *ngIf="books[1]" class="book">
+          <img src="./assets/{{books[1].image}}">
+          <p>{{books[1].name}}</p>
+          <p>{{books[1].author}}</p>
+          <p>{{books[1].genre}}</p>
+          <p>{{books[1].discount?books[1].discount:books[1].price}} din</p>
+        </td>
+      <td *ngIf="books[2]" class="book">
+        <img src="./assets/{{books[2].image}}">
+        <p>{{books[2].name}}</p>
+        <p>{{books[2].author}}</p>
+        <p>{{books[2].genre}}</p>
+        <p>{{books[2].discount?books[2].discount:books[2].price}} din</p>
+      </td>
+      <td *ngIf="books[3]" class="book">
+          <img src="./assets/{{books[3].image}}">
+          <p>{{books[3].name}}</p>
+          <p>{{books[3].author}}</p>
+          <p>{{books[3].genre}}</p>
+          <p>{{books[3].discount?books[3].discount:books[3].price}} din</p>
+        </td>
+        <td *ngIf="books[4]" class="book">
+            <img src="./assets/{{books[4].image}}">
+            <p>{{books[4].name}}</p>
+            <p>{{books[4].author}}</p>
+            <p>{{books[4].genre}}</p>
+            <p>{{books[4].discount?books[4].discount:books[4].price}} din</p>
+          </td>
+          <td *ngIf="books[5]" class="book">
+              <img src="./assets/{{books[5].image}}">
+              <p>{{books[5].name}}</p>
+              <p>{{books[5].author}}</p>
+              <p>{{books[5].genre}}</p>
+              <p>{{books[5].discount?books[5].discount:books[5].price}} din</p>
+            </td>
+  </tr>
+  <tr>
+      <td *ngIf="books[6]" class="book">
+        <img src="./assets/{{books[6].image}}">
+        <p>{{books[6].name}}</p>
+        <p>{{books[6].author}}</p>
+        <p>{{books[6].genre}}</p>
+        <p>{{books[6].discount?books[6].discount:books[6].price}} din</p>
+      </td>
+      <td *ngIf="books[7]" class="book">
+        <img src="./assets/{{books[7].image}}">
+        <p>{{books[7].name}}</p>
+        <p>{{books[7].author}}</p>
+        <p>{{books[7].genre}}</p>
+        <p>{{books[7].discount?books[7].discount:books[7].price}} din</p>
+      </td>
+      <td *ngIf="books[8]" class="book">
+          <img src="./assets/{{books[8].image}}">
+          <p>{{books[8].name}}</p>
+          <p>{{books[8].author}}</p>
+          <p>{{books[8].genre}}</p>
+          <p>{{books[8].discount?books[8].discount:books[8].price}} din</p>
+        </td>
+      <td *ngIf="books[9]" class="book">
+        <img src="./assets/{{books[9].image}}">
+        <p>{{books[9].name}}</p>
+        <p>{{books[9].author}}</p>
+        <p>{{books[9].genre}}</p>
+        <p>{{books[9].discount?books[9].discount:books[9].price}} din</p>
+      </td>
+      <td *ngIf="books[10]" class="book">
+          <img src="./assets/{{books[10].image}}">
+          <p>{{books[10].name}}</p>
+          <p>{{books[10].author}}</p>
+          <p>{{books[10].genre}}</p>
+          <p>{{books[10].discount?books[10].discount:books[10].price}} din</p>
+        </td>
+        <td *ngIf="books[11]" class="book">
+            <img src="./assets/{{books[11].image}}">
+            <p>{{books[11].name}}</p>
+            <p>{{books[11].author}}</p>
+            <p>{{books[11].genre}}</p>
+            <p>{{books[11].discount?books[11].discount:books[11].price}} din</p>
+          </td>
+  </tr>
+  
+  <tr>
+      <td *ngIf="books[12]" class="book">
+          <img src="./assets/{{books[12].image}}">
+          <p>{{books[12].name}}</p>
+          <p>{{books[12].author}}</p>
+          <p>{{books[12].genre}}</p>
+          <p>{{books[12].discount?books[12].discount:books[12].price}} din</p>
+        </td>
+        <td *ngIf="books[13]" class="book">
+            <img src="./assets/{{books[13].image}}">
+            <p>{{books[13].name}}</p>
+            <p>{{books[13].author}}</p>
+            <p>{{books[13].genre}}</p>
+            <p>{{books[13].discount?books[13].discount:books[13].price}} din</p>
+          </td>
+      <td *ngIf="books[14]" class="book">
+        <img src="./assets/{{books[14].image}}">
+        <p>{{books[14].name}}</p>
+        <p>{{books[14].author}}</p>
+        <p>{{books[14].genre}}</p>
+        <p>{{books[14].discount?books[14].discount:books[14].price}} din</p>
+      </td>
+      <td *ngIf="books[15]" class="book">
+          <img src="./assets/{{books[15].image}}">
+          <p>{{books[15].name}}</p>
+          <p>{{books[15].author}}</p>
+          <p>{{books[15].genre}}</p>
+          <p>{{books[15].discount?books[15].discount:books[15].price}} din</p>
+        </td>
+      <td *ngIf="books[16]" class="book">
+        <img src="./assets/{{books[16].image}}">
+        <p>{{books[16].name}}</p>
+        <p>{{books[16].author}}</p>
+        <p>{{books[16].genre}}</p>
+        <p>{{books[16].discount?books[16].discount:books[16].price}} din</p>
+      </td>
+      <td *ngIf="books[17]" class="book">
+          <img src="./assets/{{books[17].image}}">
+          <p>{{books[17].name}}</p>
+          <p>{{books[17].author}}</p>
+          <p>{{books[17].genre}}</p>
+          <p>{{books[17].discount?books[17].discount:books[17].price}} din</p>
+        </td>
+  </tr>
+  </table>
+</div>

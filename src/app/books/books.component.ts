@@ -20,7 +20,7 @@ export class BooksComponent implements OnInit {
 
   ngOnInit() {
     this.index = 1;
-    this.count = 40;
+    this.count = 18;
     this.user = {
       username: localStorage.getItem('username'),
       name: localStorage.getItem('name'),
@@ -29,6 +29,7 @@ export class BooksComponent implements OnInit {
       phone: localStorage.getItem('phone'),
       password: localStorage.getItem('password')
     };
+    this.refreshDataFull();
   }
   refreshData() {
     this.data.getBooks(this.count, this.index, this.genre, this.name).subscribe((data: IBook[]) => {
@@ -43,5 +44,8 @@ export class BooksComponent implements OnInit {
         this.books = data2;
       });
     });
+  }
+  search() {
+    this.refreshDataFull();
   }
 }
