@@ -93,7 +93,7 @@ app.get("/books/:name/:genre/:index/:count",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    })
+    });
 });
 app.get("/books/:id",(req,res) => {
     let params=req.params;
@@ -105,7 +105,7 @@ app.get("/books/:id",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    })
+    });
 });
 app.get("/korpa/:username",(req,res) => {
     let params=req.params;
@@ -117,7 +117,7 @@ app.get("/korpa/:username",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    })
+    });
 });
 app.get("/listazelja/:username",(req,res) => {
     let params=req.params;
@@ -159,6 +159,17 @@ app.post("/movetolistazelja",(req,res) => {
             });
         }
     });
+});
+app.post('/addtocart',(req,res)=>{
+    let params=req.body;
+    let sql = "insert into korpa (user,book, kolicina) values(?,?,?)";
+    mySqlConnection.query(sql,[params.username,params.book,params.kolicina],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
 });
 app.post("/movetokorpa",(req,res) => {
     let params=req.body;

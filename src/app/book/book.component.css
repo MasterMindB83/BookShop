@@ -2,3 +2,10 @@
     width: 400px;
     padding-left: 300px;
 }
+.width{
+    width: 50px;
+    text-align: right;
+}
+.addtocart{
+    padding-left: 800px; 
+}

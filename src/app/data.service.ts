@@ -58,4 +58,7 @@ export class DataService {
   movetoWishlist(username, book) {
     return this.http.post('http://localhost:3000/movetolistazelja', {username: username, id: book });
   }
+  addToCart(username, book, kolicina) {
+    return this.http.post('http://localhost:3000/addtocart', {username: username, book: book, kolicina: kolicina });
+  }
 }
