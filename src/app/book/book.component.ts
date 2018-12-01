@@ -44,6 +44,7 @@ export class BookComponent implements OnInit {
       if (exists === 0) {
         this.data.addToCart(this.username, this.book.id, this.kolicina).subscribe(() => {
           alert('Book added to cart.');
+          EmitterService.cart.emit();
         });
       } else {
         alert('Book is alredy in cart.');

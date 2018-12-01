@@ -28,10 +28,12 @@ export class KorpaComponent implements OnInit {
     });
   }
   moveTo(id) {
-    this.data.movetoWishlist(this.username, id).subscribe((data) => {
-      this.refreshData();
-      EmitterService.cart.emit('');
-    });
+    if (confirm('Dou you want to move this book to wishlist?')) {
+      this.data.movetoWishlist(this.username, id).subscribe((data) => {
+        this.refreshData();
+        EmitterService.cart.emit('');
+      });
+    }
   }
   refreshData() {
     this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
@@ -40,11 +42,13 @@ export class KorpaComponent implements OnInit {
     });
   }
   delete(id) {
-    this.data.deleteCartBook(this.username, id).subscribe(() => {
-      console.log('Book deleted.');
-      this.refreshData();
-      EmitterService.cart.emit('');
-    });
+    if (confirm('Dou you want to delete this book?')) {
+      this.data.deleteCartBook(this.username, id).subscribe(() => {
+        console.log('Book deleted.');
+        this.refreshData();
+        EmitterService.cart.emit('');
+      });
+    }
   }
   calculate(id) {
     const index = this.findBook(id);
