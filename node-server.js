@@ -45,7 +45,29 @@ app.get("/login/:username/:password",(req,res) => {
             res.send(rows);
     })
 });
+app.get("/cartbook/:username/:book",(req,res) => {
+    let params=req.params;
+    mySqlConnection.query("select count(*) count from korpa where user=? and book=?",
+        [params.username,params.book],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 
+app.delete("/deletecartbook/:username/:book",(req,res) => {
+    let params=req.params;
+    mySqlConnection.query("delete from korpa where user=? and book=?",
+        [params.username,params.book],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 app.get("/users/:username",(req,res) => {
     let user=req.body;
     mySqlConnection.query("select * from users where username like ?",

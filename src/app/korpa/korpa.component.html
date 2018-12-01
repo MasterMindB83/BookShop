@@ -15,5 +15,6 @@
     <td>{{book.kolicina}}</td>
     <td>{{book.total | number:'1.2'}}</td>
     <td><button (click)="moveTo(book.id)">Add to wishlist</button></td>
+    <td><button (click)="delete(book.id)">Delete</button></td>
   </tr>
 </table>

@@ -39,8 +39,15 @@ export class BookComponent implements OnInit {
     });
   }
   addToCart() {
-    this.data.addToCart(this.username, this.book.id, this.kolicina).subscribe((data) =>{
-      alert('Book added to cart.');
+    this.data.getCartBook(this.username, this.book.id).subscribe((data) => {
+      const exists = data[0].count;
+      if (exists === 0) {
+        this.data.addToCart(this.username, this.book.id, this.kolicina).subscribe(() => {
+          alert('Book added to cart.');
+        });
+      } else {
+        alert('Book is alredy in cart.');
+      }
     });
   }
 }

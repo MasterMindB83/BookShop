@@ -33,4 +33,10 @@ export class KorpaComponent implements OnInit {
       this.books = data;
     });
   }
+  delete(id) {
+    this.data.deleteCartBook(this.username, id).subscribe(() => {
+      console.log('Book deleted.');
+      this.refreshData();
+    });
+  }
 }

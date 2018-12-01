@@ -41,9 +41,7 @@ export class BooksComponent implements OnInit {
     });
   }
   refreshDataFull() {
-      // alert('test');
     this.data.getBooksNo(this.genre, this.name).subscribe((data) => {
-      alert('test');
       this.booksNo = data[0].count;
       this.maxIndex = Math.round(this.booksNo / this.count);
       if (this.count * this.maxIndex < this.booksNo) {

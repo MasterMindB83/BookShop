@@ -41,7 +41,6 @@ export class DataService {
     if (name.length > 0) {
       name2 = name;
     }
-    // alert('name2:' + name2 + ',genre:' + genre2);
     return this.http.get('http://localhost:3000/booksno/' + name2 + '/' + genre2);
   }
   getBook(id) {
@@ -61,5 +60,11 @@ export class DataService {
   }
   addToCart(username, book, kolicina) {
     return this.http.post('http://localhost:3000/addtocart', {username: username, book: book, kolicina: kolicina });
+  }
+  getCartBook(user, book) {
+    return this.http.get('http://localhost:3000/cartbook/' + user + '/' + book );
+  }
+  deleteCartBook(user, book) {
+    return this.http.delete('http://localhost:3000/deletecartbook/' + user + '/' + book );
   }
 }
