@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { IUser, IBook } from '../interfaces';
 import {DataService} from '../data.service';
+import {Observable} from 'rxjs';
 
 @Component({
   selector: 'app-books',
@@ -30,6 +31,8 @@ export class BooksComponent implements OnInit {
       phone: localStorage.getItem('phone'),
       password: localStorage.getItem('password')
     };
+    this.genre = '';
+    this.name = '';
     this.refreshDataFull();
   }
   refreshData() {
@@ -38,7 +41,9 @@ export class BooksComponent implements OnInit {
     });
   }
   refreshDataFull() {
+      // alert('test');
     this.data.getBooksNo(this.genre, this.name).subscribe((data) => {
+      alert('test');
       this.booksNo = data[0].count;
       this.maxIndex = Math.round(this.booksNo / this.count);
       if (this.count * this.maxIndex < this.booksNo) {

@@ -171,6 +171,17 @@ app.post('/addtocart',(req,res)=>{
             res.send(rows);
     })
 });
+app.get('/cart/:user',(req,res)=>{
+    let params=req.params;
+    let sql = "select * from korpa where user=?";
+    mySqlConnection.query(sql,[params.user],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 app.post("/movetokorpa",(req,res) => {
     let params=req.body;
     let sql="select * from lista_zelja where user=? and book=?";
@@ -220,13 +231,13 @@ app.get("/booksno/:name/:genre",(req,res) => {
     sql += where + ") x";
     let startIndex=(params.index-1)*params.count + 1;
     let endIndex=params.index*params.count;
-    // sql += " where row_number >= "+startIndex + " and row_number <= " + endIndex;
     mySqlConnection.query(sql,(err,rows,fields) => {
             
         if(err)
             res.send(err);
         else
             res.send(rows);
+        console.log(rows);
     })
 });
 io.on('connection',(socket) => {

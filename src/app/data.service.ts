@@ -22,25 +22,26 @@ export class DataService {
     {username: username, name: name, address: address, e_mail: e_mail, phone: phone, password: password});
   }
   getBooks(count, index, genre, name) {
-    let genre2 = genre;
-    let name2 = name;
-    if (!genre) {
-      genre2 = '-1';
+    let genre2 = '-1';
+    let name2 = '-1';
+    if (genre.length > 0) {
+      genre2 = genre;
     }
-    if (!name) {
-      name2 = '-1';
+    if (name.length > 0) {
+      name2 = name;
     }
     return this.http.get('http://localhost:3000/books/' + name2 + '/' + genre2 + '/' + index + '/' + count);
   }
   getBooksNo(genre, name) {
-    let genre2 = genre;
-    let name2 = name;
-    if (!genre) {
-      genre2 = '-1';
+    let genre2 = '-1';
+    let name2 = '-1';
+    if (genre.length > 0) {
+      genre2 = genre;
     }
-    if (!name) {
-      name2 = '-1';
+    if (name.length > 0) {
+      name2 = name;
     }
+    // alert('name2:' + name2 + ',genre:' + genre2);
     return this.http.get('http://localhost:3000/booksno/' + name2 + '/' + genre2);
   }
   getBook(id) {
