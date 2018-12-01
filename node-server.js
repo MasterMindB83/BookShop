@@ -77,7 +77,6 @@ app.post("/updatecart",(req,res) => {
             console.log(err);
         else
             res.send(rows);
-        console.log('Cart updated.')
     })
 });
 app.get("/users/:username",(req,res) => {
@@ -95,6 +94,17 @@ app.post("/updateuser",(req,res) => {
     let user=req.body;
     mySqlConnection.query("update users set username=?,name=?,phone=?,address=?,e_mail=?,password=? where username like ?",
         [req.body.username,req.body.name,req.body.phone,req.body.address,req.body.e_mail,req.body.password,req.body.username],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
+app.get("/carttotal/:username",(req,res) => {
+    let params=req.params;
+    mySqlConnection.query("select sum(ifnull(b.discount,b.price)*k.kolicina) total, sum(k.kolicina) kolicina from korpa k, books b where k.book=b.id and k.user=?",
+        [params.username],(err,rows,fields) => {
             
         if(err)
             res.send(err);
@@ -271,7 +281,6 @@ app.get("/booksno/:name/:genre",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-        console.log(rows);
     })
 });
 io.on('connection',(socket) => {

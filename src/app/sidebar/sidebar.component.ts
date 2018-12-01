@@ -12,11 +12,17 @@ export class SidebarComponent implements OnInit {
 
   user: IUser;
   room: number;
-  constructor() { }
+  total: number;
+  kolicina: number;
+  constructor(private data: DataService) { }
 
   ngOnInit() {
     EmitterService.login.subscribe((data) => {
       this.user = data;
+      this.getCartSumary();
+    });
+    EmitterService.cart.subscribe(() =>{
+      this.getCartSumary();
     });
   }
   logOut() {
@@ -25,5 +31,11 @@ export class SidebarComponent implements OnInit {
       localStorage.setItem('username', '');
       EmitterService.login.emit(this.user);
     }
+  }
+  getCartSumary() {
+    this.data.getCartSumary(this.user.username).subscribe((data) =>{
+      this.kolicina = data[0].kolicina;
+      this.total = data[0].total;
+    });
   }
 }

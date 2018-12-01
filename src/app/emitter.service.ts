@@ -6,5 +6,6 @@ import { Injectable, EventEmitter } from '@angular/core';
 export class EmitterService {
 
   static login = new EventEmitter();
+  static cart = new EventEmitter();
   constructor() { }
 }

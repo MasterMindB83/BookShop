@@ -54,6 +54,7 @@ export class KorpaComponent implements OnInit {
       this.books[index].total = this.books[index].kolicina * price;
       this.data.updateCart(this.username, id, this.books[index].kolicina, this.books[index].total ).subscribe(() => {
         console.log('Cart updated.');
+        EmitterService.cart.emit('');
       });
     }
     this.calculateTotal();

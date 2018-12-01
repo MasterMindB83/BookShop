@@ -70,4 +70,8 @@ export class DataService {
   updateCart(username, book, kolicina, total) {
     return this.http.post('http://localhost:3000/updatecart', {username: username, book: book, kolicina: kolicina, total: total });
   }
+  getCartSumary(username) {
+    return this.http.get('http://localhost:3000/carttotal/' + username);
+
+  }
 }
