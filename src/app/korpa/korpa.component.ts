@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IBook } from '../interfaces';
 import { DataService } from '../data.service';
 import { EmitterService } from '../emitter.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-korpa',
@@ -14,7 +15,7 @@ export class KorpaComponent implements OnInit {
   username: string;
   kolicina: number[];
   total: number;
-  constructor(private data: DataService) { }
+  constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.total = 0;
@@ -67,5 +68,8 @@ export class KorpaComponent implements OnInit {
     for (let i = 0; i < this.books.length; i++) {
       this.total += this.books[i].total;
     }
+  }
+  navigate(id) {
+    this.router.navigate(['books/' + id]);
   }
 }
