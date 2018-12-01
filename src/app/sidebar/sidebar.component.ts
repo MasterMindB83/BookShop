@@ -12,16 +12,18 @@ export class SidebarComponent implements OnInit {
 
   user: IUser;
   room: number;
-  total: number;
-  kolicina: number;
+  cartTotal: number;
+  cartKolicina: number;
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.cartTotal = 0;
+    this.cartKolicina = 0;
     EmitterService.login.subscribe((data) => {
       this.user = data;
       this.getCartSumary();
     });
-    EmitterService.cart.subscribe(() =>{
+    EmitterService.cart.subscribe(() => {
       this.getCartSumary();
     });
   }
@@ -33,9 +35,14 @@ export class SidebarComponent implements OnInit {
     }
   }
   getCartSumary() {
-    this.data.getCartSumary(this.user.username).subscribe((data) =>{
-      this.kolicina = data[0].kolicina;
-      this.total = data[0].total;
-    });
+    if (this.user) {
+      this.data.getCartSumary(this.user.username).subscribe((data) => {
+        this.cartKolicina = data[0].kolicina;
+        this.cartTotal = data[0].total;
+      });
+    } else {
+      this.cartTotal = 0;
+      this.cartKolicina = 0;
+    }
   }
 }

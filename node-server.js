@@ -103,14 +103,18 @@ app.post("/updateuser",(req,res) => {
 });
 app.get("/carttotal/:username",(req,res) => {
     let params=req.params;
-    mySqlConnection.query("select sum(ifnull(b.discount,b.price)*k.kolicina) total, sum(k.kolicina) kolicina from korpa k, books b where k.book=b.id and k.user=?",
-        [params.username],(err,rows,fields) => {
-            
-        if(err)
-            res.send(err);
-        else
-            res.send(rows);
-    })
+    if(params.username === '-1') {
+        res.send({total: 0, kolicina: 0})
+    } else {
+        mySqlConnection.query("select sum(ifnull(b.discount,b.price)*k.kolicina) total, sum(k.kolicina) kolicina from korpa k, books b where k.book=b.id and k.user=?",
+            [params.username],(err,rows,fields) => {
+                
+            if(err)
+                res.send(err);
+            else
+                res.send(rows);
+        });
+    }
 });
 app.get("/books/:name/:genre/:index/:count",(req,res) => {
     let params=req.params;
