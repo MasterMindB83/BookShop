@@ -24,8 +24,8 @@ app.use(bodyParser.json());
 
 app.post("/adduser",(req,res) => {
     let user=req.body;
-    mySqlConnection.query("insert into users(username,name,e_mail,address,phone,password) values(?,?,?,?,?,?)",
-        [user.username,user.name,user.e_mail,user.address,user.phone,user.password],(err,rows,fields) => {
+    mySqlConnection.query("insert into users(username,name,e_mail,address,phone,password,city) values(?,?,?,?,?,?,?)",
+        [user.username,user.name,user.e_mail,user.address,user.phone,user.password,user.city],(err,rows,fields) => {
             
         if(err)
             res.send(err);
@@ -136,8 +136,8 @@ app.get("/users/:username",(req,res) => {
 });
 app.post("/updateuser",(req,res) => {
     let user=req.body;
-    mySqlConnection.query("update users set username=?,name=?,phone=?,address=?,e_mail=?,password=? where username like ?",
-        [req.body.username,req.body.name,req.body.phone,req.body.address,req.body.e_mail,req.body.password,req.body.username],(err,rows,fields) => {
+    mySqlConnection.query("update users set username=?,name=?,phone=?,address=?,e_mail=?,password=?, city=? where username like ?",
+        [req.body.username,req.body.name,req.body.phone,req.body.address,req.body.e_mail,req.body.password,req.body.city,req.body.username],(err,rows,fields) => {
             
         if(err)
             res.send(err);
@@ -151,6 +151,21 @@ app.get("/carttotal/:username",(req,res) => {
         res.send({total: 0, kolicina: 0})
     } else {
         mySqlConnection.query("select sum(ifnull(b.discount,b.price)*k.kolicina) total, sum(k.kolicina) kolicina from korpa k, books b where k.book=b.id and k.user=?",
+            [params.username],(err,rows,fields) => {
+                
+            if(err)
+                res.send(err);
+            else
+                res.send(rows);
+        });
+    }
+});
+app.get("/wishlisttotal/:username",(req,res) => {
+    let params=req.params;
+    if(params.username === '-1') {
+        res.send({total: 0, kolicina: 0})
+    } else {
+        mySqlConnection.query("select ifnull(sum(ifnull(b.discount,b.price)),0) total, ifnull(sum(k.kolicina),0) kolicina from lista_zelja k, books b where k.book=b.id and k.user=?",
             [params.username],(err,rows,fields) => {
                 
             if(err)

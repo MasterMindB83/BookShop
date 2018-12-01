@@ -15,6 +15,8 @@ export class SidebarComponent implements OnInit {
   room: number;
   cartTotal: number;
   cartKolicina: number;
+  wishlistTotal: number;
+  wishlistKolicina: number;
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -25,20 +27,28 @@ export class SidebarComponent implements OnInit {
         address: localStorage.getItem('address'),
         e_mail: localStorage.getItem('e_mail'),
         phone: localStorage.getItem('phone'),
-        password: localStorage.getItem('password')
+        password: localStorage.getItem('password'),
+        city: localStorage.getItem('city')
       };
     } else {
       this.user = null;
     }
-    this.getCartSumary();
     this.cartTotal = 0;
     this.cartKolicina = 0;
+    this.wishlistTotal = 0;
+    this.wishlistKolicina = 0;
+    this.getCartSumary();
+    this.getWishlistSumary();
     EmitterService.login.subscribe((data) => {
       this.user = data;
       this.getCartSumary();
+      this.getWishlistSumary();
     });
     EmitterService.cart.subscribe(() => {
       this.getCartSumary();
+    });
+    EmitterService.wishlist.subscribe(() => {
+      this.getWishlistSumary();
     });
   }
   logOut() {
@@ -49,6 +59,7 @@ export class SidebarComponent implements OnInit {
       localStorage.setItem('e_mail', null);
       localStorage.setItem('phone', null);
       localStorage.setItem('password', null);
+      localStorage.setItem('city', null);
       this.user = null;
       EmitterService.login.emit(this.user);
       this.router.navigate(['/']);
@@ -63,6 +74,17 @@ export class SidebarComponent implements OnInit {
     } else {
       this.cartTotal = 0;
       this.cartKolicina = 0;
+    }
+  }
+  getWishlistSumary() {
+    if (this.user) {
+      this.data.getWishlistSumary(this.user.username).subscribe((data) => {
+        this.wishlistKolicina = data[0].kolicina;
+        this.wishlistTotal = data[0].total;
+      });
+    } else {
+      this.wishlistTotal = 0;
+      this.wishlistKolicina = 0;
     }
   }
 }

@@ -43,3 +43,9 @@
 .float{
     text-align: right;
 }
+.padding{
+    padding: 10px;
+}
+.hand{
+    cursor: pointer;
+}

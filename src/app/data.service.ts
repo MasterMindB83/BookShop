@@ -7,9 +7,9 @@ import { HttpClient } from '@angular/common/http';
 export class DataService {
 
   constructor(private http: HttpClient) { }
-  addUser(username1, name1, e_mail1, address1, phone1, password1) {
+  addUser(username1, name1, e_mail1, address1, phone1, password1, city) {
     return this.http.post('http://localhost:3000/adduser',
-    {username: username1, name: name1, e_mail1: e_mail1, address: address1, phone: phone1, password: password1});
+    {username: username1, name: name1, e_mail1: e_mail1, address: address1, phone: phone1, password: password1, city: city});
   }
   login(username, password) {
     return this.http.get('http://localhost:3000/login/' + username + '/' + password);
@@ -17,9 +17,9 @@ export class DataService {
   getUser(username) {
     return this.http.get('http://localhost:3000/users/' + username);
   }
-  updateUser(username, name, phone, address, e_mail, password) {
+  updateUser(username, name, phone, address, e_mail, password, city) {
     return this.http.post('http://localhost:3000/updateuser',
-    {username: username, name: name, address: address, e_mail: e_mail, phone: phone, password: password});
+    {username: username, name: name, address: address, e_mail: e_mail, phone: phone, password: password, city: city});
   }
   getBooks(count, index, genre, name) {
     let genre2 = '-1';
@@ -86,5 +86,8 @@ export class DataService {
   }
   delecteWishlistBook(user, book) {
     return this.http.get('http://localhost:3000/deletefromwishlist/' + user + '/' + book);
+  }
+  getWishlistSumary(user) {
+    return this.http.get('http://localhost:3000/wishlisttotal/' + user);
   }
 }

@@ -32,6 +32,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('phone', this.user.phone);
           localStorage.setItem('password', this.user.password);
           localStorage.setItem('address', this.user.address);
+          localStorage.setItem('city', this.user.city);
           this.router.navigate(['/']);
         });
       } else {

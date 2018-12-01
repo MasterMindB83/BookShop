@@ -29,9 +29,15 @@ export class KorpaComponent implements OnInit {
   }
   moveTo(id) {
     if (confirm('Dou you want to move this book to wishlist?')) {
-      this.data.movetoWishlist(this.username, id).subscribe((data) => {
-        this.refreshData();
-        EmitterService.cart.emit('');
+      this.data.getWishlistBook(this.username, id).subscribe((data) => {
+        if (data[0].count === 0) {
+          this.data.movetoWishlist(this.username, id).subscribe((data2) => {
+            this.refreshData();
+            EmitterService.cart.emit('');
+          });
+        } else {
+          alert('Book is alredy in Wishlist.');
+        }
       });
     }
   }

@@ -14,6 +14,7 @@ export class RegisterUpComponent implements OnInit {
   name: string;
   e_mail: string;
   address: string;
+  city: string;
   phone: string;
   password: string;
   password2: string;
@@ -27,7 +28,7 @@ export class RegisterUpComponent implements OnInit {
       this.data.getUser(this.username).subscribe((data: IUser) => {
         this.oldUser = data[0];
         if (!this.oldUser) {
-          this.data.addUser(this.username, this.name, this.e_mail, this.address, this.phone, this.password)
+          this.data.addUser(this.username, this.name, this.e_mail, this.address, this.phone, this.password, this.city)
           .subscribe((data2) => {
             console.log('User added.');
             this.user = {
@@ -36,7 +37,8 @@ export class RegisterUpComponent implements OnInit {
               e_mail: this.e_mail,
               address: this.address,
               password: this.password,
-              phone: this.phone
+              phone: this.phone,
+              city: this.city
             };
             localStorage.setItem('username', this.user.username);
             localStorage.setItem('name', this.user.name);
@@ -44,6 +46,7 @@ export class RegisterUpComponent implements OnInit {
             localStorage.setItem('phone', this.user.phone);
             localStorage.setItem('password', this.user.password);
             localStorage.setItem('address', this.user.address);
+            localStorage.setItem('city', this.user.city);
             EmitterService.login.emit(this.user);
             this.router.navigate(['/']);
           });

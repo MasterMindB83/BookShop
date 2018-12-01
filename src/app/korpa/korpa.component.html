@@ -7,15 +7,17 @@
       <td>Amount</td>
       <td>Total</td>
     </tr>
-    <tr *ngFor="let book of books">
-        <td class="top left bottom" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
-        <td class="right width top bottom" (click)="navigate(book.id)">{{book.name}}<br>
+    <tr *ngFor="let book of books" class="row">
+        <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
+        <td class="right width top bottom padding" (click)="navigate(book.id)">{{book.name}}<br>
           {{book.author}}</td>
-        <td class="top right bottom">{{book.discount?book.discount:book.price | number:'1.2'}}</td>
-        <td class="top right bottom"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)"></td>
-        <td class="top right bottom">{{book.total | number:'1.2'}}</td>
-        <td><button (click)="moveTo(book.id)">Move to wishlist</button></td>
-        <td><button (click)="delete(book.id)">Delete</button></td>
+        <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2'}}</td>
+        <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">
+          <br>
+          <a (click)="moveTo()" class="hand">Move to Cart</a>
+          <br>
+          <a (click)="delete()" class="hand">Delete</a></td>
+        <td class="top right bottom padding">{{book.total | number:'1.2'}}</td>
     </tr>
     <tr>
       <td></td>

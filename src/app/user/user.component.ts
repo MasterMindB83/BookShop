@@ -13,6 +13,7 @@ export class UserComponent implements OnInit {
   name: string;
   e_mail: string;
   address: string;
+  city: string;
   phone: string;
   oldPassword: string;
   newPassword: string;
@@ -26,16 +27,17 @@ export class UserComponent implements OnInit {
     this.e_mail = localStorage.getItem('e_mail');
     this.phone = localStorage.getItem('phone');
     this.address = localStorage.getItem('address');
+    this.city = localStorage.getItem('city');
   }
   save() {
     this.data.login(this.username, this.oldPassword).subscribe((data) => {
       this.exists = data[0].count;
       if (this.exists) {
         let password = this.oldPassword;
-        if(this.newPassword) {
+        if (this.newPassword) {
           password = this.newPassword;
         }
-        this.data.updateUser(this.username, this.name, this.phone, this.address, this.e_mail, password).subscribe(() => {
+        this.data.updateUser(this.username, this.name, this.phone, this.address, this.e_mail, password, this.city).subscribe(() => {
           console.log('User updated.');
 
           localStorage.setItem('username', this.username);
@@ -44,13 +46,15 @@ export class UserComponent implements OnInit {
           localStorage.setItem('phone', this.phone);
           localStorage.setItem('password', this.newPassword);
           localStorage.setItem('address', this.address);
+          localStorage.setItem('city', this.city);
           this.user = {
             username: this.username,
             name: this.name,
             e_mail: this.e_mail,
             password: this.newPassword,
             address: this.address,
-            phone: this.phone
+            phone: this.phone,
+            city: this.city
           };
           EmitterService.login.emit(this.user);
           alert('User changed.');
