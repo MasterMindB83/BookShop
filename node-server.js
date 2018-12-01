@@ -93,7 +93,7 @@ app.get("/books/:name/:genre/:index/:count",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    });
+    })
 });
 app.get("/books/:id",(req,res) => {
     let params=req.params;
@@ -105,7 +105,7 @@ app.get("/books/:id",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    });
+    })
 });
 app.get("/korpa/:username",(req,res) => {
     let params=req.params;
@@ -117,7 +117,7 @@ app.get("/korpa/:username",(req,res) => {
             res.send(err);
         else
             res.send(rows);
-    });
+    })
 });
 app.get("/listazelja/:username",(req,res) => {
     let params=req.params;

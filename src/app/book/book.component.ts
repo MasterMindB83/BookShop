@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { IBook } from '../interfaces';
 import { DataService } from '../data.service';
 import { ActivatedRoute } from '@angular/router';
-import { EmitterService } from '../emitter.service';
+import {EmitterService} from '../emitter.service';
 
 @Component({
   selector: 'app-book',
@@ -21,8 +21,12 @@ export class BookComponent implements OnInit {
   ngOnInit() {
     this.refreshData();
     this.kolicina = 1;
+    EmitterService.login.subscribe(() => {
+        this.username = localStorage.getItem('username');
+        });
   }
   refreshData() {
+    this.kolicina = 1;
     this.username = localStorage.getItem('username');
     const id = this.route.snapshot.paramMap.get('id');
     this.data.getBook(id).subscribe((data) => {
@@ -32,9 +36,6 @@ export class BookComponent implements OnInit {
         this.procenat = Math.round(this.usteda / this.book.price * 100);
       }
 
-    });
-    EmitterService.login.subscribe((data) => {
-    this.username = localStorage.getItem('username');
     });
   }
   addToCart() {
