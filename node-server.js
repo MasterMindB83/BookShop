@@ -68,6 +68,18 @@ app.delete("/deletecartbook/:username/:book",(req,res) => {
             res.send(rows);
     })
 });
+app.post("/updatecart",(req,res) => {
+    let params=req.body;
+    mySqlConnection.query("update korpa set kolicina=? where user=? and book=?",
+        [params.kolicina,params.username,params.book],(err,rows,fields) => {
+            
+        if(err)
+            console.log(err);
+        else
+            res.send(rows);
+        console.log('Cart updated.')
+    })
+});
 app.get("/users/:username",(req,res) => {
     let user=req.body;
     mySqlConnection.query("select * from users where username like ?",

@@ -67,4 +67,7 @@ export class DataService {
   deleteCartBook(user, book) {
     return this.http.delete('http://localhost:3000/deletecartbook/' + user + '/' + book );
   }
+  updateCart(username, book, kolicina, total) {
+    return this.http.post('http://localhost:3000/updatecart', {username: username, book: book, kolicina: kolicina, total: total });
+  }
 }
