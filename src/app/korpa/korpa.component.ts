@@ -30,6 +30,7 @@ export class KorpaComponent implements OnInit {
   moveTo(id) {
     this.data.movetoWishlist(this.username, id).subscribe((data) => {
       this.refreshData();
+      EmitterService.cart.emit('');
     });
   }
   refreshData() {
@@ -42,6 +43,7 @@ export class KorpaComponent implements OnInit {
     this.data.deleteCartBook(this.username, id).subscribe(() => {
       console.log('Book deleted.');
       this.refreshData();
+      EmitterService.cart.emit('');
     });
   }
   calculate(id) {
