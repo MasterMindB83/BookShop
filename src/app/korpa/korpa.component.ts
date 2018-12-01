@@ -12,9 +12,12 @@ export class KorpaComponent implements OnInit {
 
   books: IBook[];
   username: string;
+  kolicina: number[];
+  total: number;
   constructor(private data: DataService) { }
 
   ngOnInit() {
+    this.total = 0;
     this.username = localStorage.getItem('username');
     if (this.username) {
       this.refreshData();
@@ -31,6 +34,7 @@ export class KorpaComponent implements OnInit {
   refreshData() {
     this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
       this.books = data;
+      this.calculateTotal();
     });
   }
   delete(id) {
@@ -38,5 +42,30 @@ export class KorpaComponent implements OnInit {
       console.log('Book deleted.');
       this.refreshData();
     });
+  }
+  calculate(id) {
+    const index = this.findBook(id);
+    if (index > -1) {
+      let price = this.books[index].price;
+      if (this.books[index].discount) {
+        price = this.books[index].discount;
+      }
+      this.books[index].total = this.books[index].kolicina * price;
+    }
+    this.calculateTotal();
+  }
+  findBook(id) {
+    for (let i = 0; i < this.books.length; i++) {
+      if (this.books[i].id === id) {
+        return i;
+      }
+    }
+    return -1;
+  }
+  calculateTotal() {
+    this.total = 0;
+    for (let i = 0; i < this.books.length; i++) {
+      this.total += this.books[i].total;
+    }
   }
 }

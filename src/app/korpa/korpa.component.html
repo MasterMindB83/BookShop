@@ -1,20 +1,28 @@
-<h1>Cart</h1>
-
-<table *ngIf="username">
+<h1 class="headline">Cart</h1>
+<table *ngIf="username" class="table">
   <tr>
-    <th>Name</th>
-    <th>Author</th>
-    <th>Price</th>
-    <th>Amount</th>
-    <th>Total</th>
+    <td colspan=2>Article</td>
+    <td>Price</td>
+    <td>Amount</td>
+    <td>Total</td>
   </tr>
   <tr *ngFor="let book of books">
-    <td>{{book.name}}</td>
-    <td>{{book.author}}</td>
-    <td>{{book.discount?book.discount:book.price}}</td>
-    <td>{{book.kolicina}}</td>
-    <td>{{book.total | number:'1.2'}}</td>
-    <td><button (click)="moveTo(book.id)">Add to wishlist</button></td>
-    <td><button (click)="delete(book.id)">Delete</button></td>
+      <td class="top left bottom"><img src="./assets/{{book.image}}" class="image"></td>
+      <td class="right width top bottom">{{book.name}}<br>
+        {{book.author}}</td>
+      <td class="top right bottom" bottom>{{book.discount?book.discount:book.price | number:'1.2'}}</td>
+      <!--<td>{{kolicina[book.id]}}</td>-->
+      <td class="top right bottom"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)"></td>
+      <td class="top right bottom">{{book.total | number:'1.2'}}</td>
+      <td><button (click)="moveTo(book.id)">Add to wishlist</button></td>
+      <td><button (click)="delete(book.id)">Delete</button></td>
+      <td>{{book.kolicina}}</td>
+  </tr>
+  <tr>
+    <td></td>
+    <td></td>
+    <td></td>
+    <td>Total price:</td>
+    <td>{{total | number:'1.2'}}</td>
   </tr>
 </table>
