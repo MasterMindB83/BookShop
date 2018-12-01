@@ -59,7 +59,8 @@ export class DataService {
     return this.http.post('http://localhost:3000/movetolistazelja', {username: username, id: book });
   }
   addToCart(username, book, kolicina) {
-    return this.http.post('http://localhost:3000/addtocart', {username: username, book: book, kolicina: kolicina });
+    return this.http.post('http://localhost:3000/addtocart',
+     {username: username, book: book, kolicina: kolicina });
   }
   getCartBook(user, book) {
     return this.http.get('http://localhost:3000/cartbook/' + user + '/' + book );
@@ -68,10 +69,22 @@ export class DataService {
     return this.http.delete('http://localhost:3000/deletecartbook/' + user + '/' + book );
   }
   updateCart(username, book, kolicina, total) {
-    return this.http.post('http://localhost:3000/updatecart', {username: username, book: book, kolicina: kolicina, total: total });
+    return this.http.post('http://localhost:3000/updatecart',
+    {username: username, book: book, kolicina: kolicina, total: total });
   }
   getCartSumary(username) {
     return this.http.get('http://localhost:3000/carttotal/' + username);
 
+  }
+  addToWishlist(user, book) {
+    return this.http.post('http://localhost:3000/addtowishlist',
+    {user: user, book: book});
+  }
+  getWishlistBook(user, book) {
+    return this.http.get('http://localhost:3000/wishlistbook/' + user + '/' + book);
+
+  }
+  delecteWishlistBook(user, book) {
+    return this.http.get('http://localhost:3000/deletefromwishlist/' + user + '/' + book);
   }
 }

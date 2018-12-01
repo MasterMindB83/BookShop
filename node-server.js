@@ -56,7 +56,29 @@ app.get("/cartbook/:username/:book",(req,res) => {
             res.send(rows);
     })
 });
-
+app.get("/wishlistbook/:username/:book",(req,res) => {
+    let params=req.params;
+    mySqlConnection.query("select count(*) count from lista_zelja where user=? and book=?",
+        [params.username,params.book],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    });
+});
+app.post("/addtowishlist",(req,res)=>{
+    let params=req.body;
+    console.log('test');
+    mySqlConnection.query("insert into lista_zelja (user, book, kolicina) values(?,?,1)",
+        [params.user,params.book],(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    });
+});
 app.delete("/deletecartbook/:username/:book",(req,res) => {
     let params=req.params;
     mySqlConnection.query("delete from korpa where user=? and book=?",
@@ -69,6 +91,28 @@ app.delete("/deletecartbook/:username/:book",(req,res) => {
     })
 });
 app.post("/updatecart",(req,res) => {
+    let params=req.body;
+    mySqlConnection.query("update korpa set kolicina=? where user=? and book=?",
+        [params.kolicina,params.username,params.book],(err,rows,fields) => {
+            
+        if(err)
+            console.log(err);
+        else
+            res.send(rows);
+    })
+});
+app.get("/deletefromwishlist/:user/:book",(req,res) => {
+    let params=req.params;
+    mySqlConnection.query("delete from lista_zelja where user=? and book=?",
+        [params.user,params.book],(err,rows,fields) => {
+            
+        if(err)
+            console.log(err);
+        else
+            res.send(rows);
+    })
+});
+app.post("/updatewishlist",(req,res) => {
     let params=req.body;
     mySqlConnection.query("update korpa set kolicina=? where user=? and book=?",
         [params.kolicina,params.username,params.book],(err,rows,fields) => {

@@ -51,4 +51,17 @@ export class BookComponent implements OnInit {
       }
     });
   }
+  addToWishlist() {
+    this.data.getWishlistBook(this.username, this.book.id).subscribe((data) => {
+      const exists = data[0].count;
+      if (exists === 0) {
+        this.data.addToWishlist(this.username, this.book.id).subscribe(() => {
+          alert('Book added to Wishlist.');
+          EmitterService.wishlist.emit();
+        });
+      } else {
+        alert('Book is alredy in Wishlist.');
+      }
+    });
+  }
 }

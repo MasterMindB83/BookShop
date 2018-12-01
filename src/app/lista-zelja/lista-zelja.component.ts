@@ -13,6 +13,7 @@ export class ListaZeljaComponent implements OnInit {
 
   username: string;
   books: IBook[];
+  total: number;
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
@@ -21,6 +22,9 @@ export class ListaZeljaComponent implements OnInit {
     EmitterService.login.subscribe((data) => {
       this.username = localStorage.getItem('username');
     });
+    EmitterService.wishlist.subscribe(() => {
+      this.refreshData();
+    });
   }
   refreshData() {
     this.data.getListaZelja(this.username).subscribe((data: IBook[]) => {
@@ -28,17 +32,34 @@ export class ListaZeljaComponent implements OnInit {
     });
   }
   moveTo(id) {
-    this.data.movetoCart(this.username, id).subscribe((data) => {
-      console.log('Moved to cart.');
-      this.refreshData();
-    });
+    if (confirm('Do you want to move this book to Cart?')) {
+        this.data.getCartBook(this.username, id).subscribe((data) => {
+        if (data[0].count === 0) {
+          this.data.movetoCart(this.username, id).subscribe((data2) => {
+            console.log('Moved to cart.');
+            this.refreshData();
+            EmitterService.cart.emit();
+            EmitterService.wishlist.emit();
+            this.refreshData();
+          });
+        } else {
+          alert('Book alredy in Cart.');
+        }
+      });
+    }
   }
   navigate(id) {
     this.router.navigate(['books/' + id]);
   }
-  delete(id) {}
+  delete(id) {
+    if (confirm('Do you want to delete this book?')) {
+      this.data.delecteWishlistBook(this.username, id).subscribe((data) => {
+        EmitterService.wishlist.emit();
+        this.refreshData();
+      });
+    }
+  }
   refreshUser() {
-    alert('test');
     this.username = localStorage.getItem('username');
   }
 }

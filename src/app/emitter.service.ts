@@ -7,5 +7,6 @@ export class EmitterService {
 
   static login = new EventEmitter();
   static cart = new EventEmitter();
+  static wishlist = new EventEmitter();
   constructor() { }
 }

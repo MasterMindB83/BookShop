@@ -1,13 +1,24 @@
-<h1 class="headline" (onload)="refreshUser()">Wishlist</h1>
-<table *ngIf="username" class="table">
-  <tr>
-    <td colspan=2>Article</td>
-  </tr>
-  <tr *ngFor="let book of books">
-      <td class="top left bottom" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
-      <td class="right width top bottom" (click)="navigate(book.id)">{{book.name}}<br>
-        {{book.author}}</td>
-      <td><button (click)="moveTo(book.id)">Move to cart</button></td>
-      <td><button (click)="delete(book.id)">Delete</button></td>
-  </tr>
-</table>
+<h1 class="headline">Cart</h1>
+<div *ngIf="username != 'null'">
+  <table class="table">
+    <tr>
+      <td colspan=2>Article</td>
+      <td>Price</td>
+    </tr>
+    <tr *ngFor="let book of books">
+        <td class="top left bottom" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
+        <td class="right width top bottom" (click)="navigate(book.id)">{{book.name}}<br>
+          {{book.author}}</td>
+        <td class="top right bottom">{{book.total | number:'1.2'}}</td>
+        <td><button (click)="moveTo(book.id)">Move to Cart</button></td>
+        <td><button (click)="delete(book.id)">Delete</button></td>
+    </tr>
+    <tr>
+      <td></td>
+      <td></td>
+      <td></td>
+      <td>Total price:</td>
+      <td>{{total | number:'1.2'}}</td>
+    </tr>
+  </table>
+</div>
