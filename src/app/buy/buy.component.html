@@ -3,32 +3,24 @@
   <table class="table">
     <tr>
       <td colspan=2>Article</td>
-      <td>Price</td>
       <td>Amount</td>
       <td>Total</td>
     </tr>
     <tr *ngFor="let book of books" class="row">
-        <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
-        <td class="right width top bottom padding" (click)="navigate(book.id)">{{book.name}}<br>
+        <td class="top left bottom padding"><img src="./assets/{{book.image}}" class="image"></td>
+        <td class="right width top bottom padding width2">{{book.name}}<br>
           {{book.author}}</td>
-        <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2'}}</td>
         <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">
-          <br>
-          <a (click)="moveTo()" class="hand">Move to Cart</a>
-          <br>
-          <a (click)="delete()" class="hand">Delete</a></td>
         <td class="top right bottom padding">{{book.total| number:'1.2'}}</td>
     </tr>
     <tr>
-      <td class="top bottom left padding"><button (click)="next()" class="next">Next</button></td>
-      <td class="top bottom padding"></td>
-      <td class="top  bottom padding"></td>
+      <td class="top bottom left padding"></td>
       <td class="top bottom right padding float">Amount discount:
         <br>
         <a class="float">Total price:</a>
         <br>
       &nbsp;</td>
-      <td class="top right bottom padding">{{discount * total | number:'1.2'}} 
+      <td class="top right bottom padding" colspan="2">{{discount * total | number:'1.2'}} 
         <br>
         {{totalDiscount | number:'1.2'}}
         <br>

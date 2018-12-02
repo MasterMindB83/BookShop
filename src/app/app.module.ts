@@ -15,6 +15,7 @@ import { EmitterService } from './emitter.service';
 import { BookComponent } from './book/book.component';
 import { KorpaComponent } from './korpa/korpa.component';
 import { ListaZeljaComponent } from './lista-zelja/lista-zelja.component';
+import { BuyComponent } from './buy/buy.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { ListaZeljaComponent } from './lista-zelja/lista-zelja.component';
     RegisterUpComponent,
     BookComponent,
     KorpaComponent,
-    ListaZeljaComponent
+    ListaZeljaComponent,
+    BuyComponent
   ],
   imports: [
     BrowserModule,

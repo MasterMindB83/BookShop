@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { IBook } from '../interfaces';
 import { DataService } from '../data.service';
 import { EmitterService } from '../emitter.service';
-import { Router } from '@angular/router';
+import { IBook } from '../interfaces';
 
 @Component({
-  selector: 'app-korpa',
-  templateUrl: './korpa.component.html',
-  styleUrls: ['./korpa.component.css']
+  selector: 'app-buy',
+  templateUrl: './buy.component.html',
+  styleUrls: ['./buy.component.css']
 })
-export class KorpaComponent implements OnInit {
+export class BuyComponent implements OnInit {
 
   books: IBook[];
   username: string;
@@ -19,47 +18,17 @@ export class KorpaComponent implements OnInit {
   totalDiscount: number;
   discountAmount: number;
   discount: number;
-  constructor(private data: DataService, private router: Router) { }
+  constructor(private data: DataService) { }
 
   ngOnInit() {
-    this.total = 0;
     this.username = localStorage.getItem('username');
     this.getDiscount();
-    /*if (this.username) {
-      this.refreshData();
-    }*/
-    EmitterService.login.subscribe((data) => {
-      this.username = localStorage.getItem('username');
-    });
-  }
-  moveTo(id) {
-    if (confirm('Dou you want to move this book to wishlist?')) {
-      this.data.getWishlistBook(this.username, id).subscribe((data) => {
-        if (data[0].count === 0) {
-          this.data.movetoWishlist(this.username, id).subscribe((data2) => {
-            this.refreshData();
-            EmitterService.cart.emit('');
-          });
-        } else {
-          alert('Book is alredy in Wishlist.');
-        }
-      });
-    }
   }
   refreshData() {
     this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
       this.books = data;
       this.calculateTotal();
     });
-  }
-  delete(id) {
-    if (confirm('Dou you want to delete this book?')) {
-      this.data.deleteCartBook(this.username, id).subscribe(() => {
-        console.log('Book deleted.');
-        this.refreshData();
-        EmitterService.cart.emit('');
-      });
-    }
   }
   calculate(id) {
     const index = this.findBook(id);
@@ -99,17 +68,11 @@ export class KorpaComponent implements OnInit {
       this.totalDiscount = this.total;
     }
   }
-  navigate(id) {
-    this.router.navigate(['books/' + id]);
-  }
   getDiscount() {
     this.data.getDiscount().subscribe((data) => {
       this.discountAmount = data[0].amount;
       this.discount = data[0].discount;
       this.refreshData();
     });
-  }
-  next() {
-    this.router.navigate(['buy']);
   }
 }

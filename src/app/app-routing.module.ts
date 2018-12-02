@@ -7,6 +7,7 @@ import { RegisterUpComponent } from './register-up/register-up.component';
 import { BookComponent } from './book/book.component';
 import { KorpaComponent } from './korpa/korpa.component';
 import { ListaZeljaComponent } from './lista-zelja/lista-zelja.component';
+import { BuyComponent } from './buy/buy.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
     path: 'listazelja',
     component: ListaZeljaComponent
+  },
+  {
+    path: 'buy',
+    component: BuyComponent
   }
 ];
 
