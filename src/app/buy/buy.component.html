@@ -10,7 +10,7 @@
         <td class="top left bottom padding"><img src="./assets/{{book.image}}" class="image"></td>
         <td class="right width top bottom padding width2">{{book.name}}<br>
           {{book.author}}</td>
-        <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">
+        <td class="top right bottom padding">{{book.kolicina}}</td>
         <td class="top right bottom padding">{{book.total| number:'1.2'}}</td>
     </tr>
     <tr>
