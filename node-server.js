@@ -289,6 +289,17 @@ app.get('/cart/:user',(req,res)=>{
             res.send(rows);
     })
 });
+app.get('/discount',(req,res)=>{
+    let params=req.params;
+    let sql = "select * from quantity_discount";
+    mySqlConnection.query(sql,(err,rows,fields) => {
+            
+        if(err)
+            res.send(err);
+        else
+            res.send(rows);
+    })
+});
 app.post("/movetokorpa",(req,res) => {
     let params=req.body;
     let sql="select * from lista_zelja where user=? and book=?";

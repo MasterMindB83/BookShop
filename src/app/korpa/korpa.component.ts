@@ -13,16 +13,21 @@ export class KorpaComponent implements OnInit {
 
   books: IBook[];
   username: string;
-  kolicina: number[];
+  kolicina: number;
   total: number;
+  totalWithoutDiscount: number;
+  totalDiscount: number;
+  discountAmount: number;
+  discount: number;
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
     this.total = 0;
     this.username = localStorage.getItem('username');
-    if (this.username) {
+    this.getDiscount();
+    /*if (this.username) {
       this.refreshData();
-    }
+    }*/
     EmitterService.login.subscribe((data) => {
       this.username = localStorage.getItem('username');
     });
@@ -81,11 +86,27 @@ export class KorpaComponent implements OnInit {
   }
   calculateTotal() {
     this.total = 0;
+    this.kolicina = 0;
+    this.totalWithoutDiscount = 0;
     for (let i = 0; i < this.books.length; i++) {
       this.total += this.books[i].total;
+      this.kolicina += this.books[i].kolicina;
+      this.totalWithoutDiscount += this.books[i].kolicina * this.books[i].price;
+    }
+    if (this.kolicina >= this.discountAmount) {
+      this.totalDiscount = this.total - this.total * this.discount;
+    } else {
+      this.totalDiscount = this.total;
     }
   }
   navigate(id) {
     this.router.navigate(['books/' + id]);
+  }
+  getDiscount() {
+    this.data.getDiscount().subscribe((data) => {
+      this.discountAmount = data[0].amount;
+      this.discount = data[0].discount;
+      this.refreshData();
+    });
   }
 }

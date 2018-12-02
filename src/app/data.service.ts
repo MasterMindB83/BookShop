@@ -90,4 +90,7 @@ export class DataService {
   getWishlistSumary(user) {
     return this.http.get('http://localhost:3000/wishlisttotal/' + user);
   }
+  getDiscount() {
+    return this.http.get('http://localhost:3000/discount');
+  }
 }

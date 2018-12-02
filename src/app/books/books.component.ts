@@ -29,7 +29,8 @@ export class BooksComponent implements OnInit {
       address: localStorage.getItem('address'),
       e_mail: localStorage.getItem('e_mail'),
       phone: localStorage.getItem('phone'),
-      password: localStorage.getItem('password')
+      password: localStorage.getItem('password'),
+      city: localStorage.getItem('city')
     };
     this.genre = '';
     this.name = '';
