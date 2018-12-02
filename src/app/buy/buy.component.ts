@@ -11,7 +11,13 @@ import { IBook } from '../interfaces';
 export class BuyComponent implements OnInit {
 
   books: IBook[];
+  // user
   username: string;
+  name: string;
+  e_mail: string;
+  address: string;
+  city: string;
+  phone: string;
   kolicina: number;
   total: number;
   totalWithoutDiscount: number;
@@ -23,6 +29,12 @@ export class BuyComponent implements OnInit {
   ngOnInit() {
     this.username = localStorage.getItem('username');
     this.getDiscount();
+    this.username = localStorage.getItem('username');
+    this.name = localStorage.getItem('name');
+    this.e_mail = localStorage.getItem('e_mail');
+    this.phone = localStorage.getItem('phone');
+    this.address = localStorage.getItem('address');
+    this.city = localStorage.getItem('city');
   }
   refreshData() {
     this.data.getKorpa(this.username).subscribe((data: IBook[]) => {
@@ -75,4 +87,5 @@ export class BuyComponent implements OnInit {
       this.refreshData();
     });
   }
+  buyBooks() {}
 }

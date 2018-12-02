@@ -1,5 +1,5 @@
 <h1 class="headline">Cart</h1>
-<div *ngIf="username != 'null'">
+<div *ngIf="username != 'null' && kolicina > 0">
   <table class="table">
     <tr>
       <td colspan=2>Article</td>
@@ -14,9 +14,9 @@
         <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2-2'}}din</td>
         <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">
           <br>
-          <a (click)="moveTo()" class="hand">Move to Cart</a>
+          <a (click)="moveTo(book.id)" class="hand">Move to Wishlist</a>
           <br>
-          <a (click)="delete()" class="hand">Delete</a></td>
+          <a (click)="delete(book.id)" class="hand">Delete</a></td>
         <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}din
           <br>
           <a class="price">{{book.total| number:'1.2'}}din</a>
@@ -36,11 +36,11 @@
         <br>
         &nbsp;
       &nbsp;</td>
-      <td class="top right bottom padding">{{discount * total | number:'1.2'}}din 
+      <td class="top right bottom padding">{{(kolicina >= discountAmount ?discount * total : 0) | number:'1.2-2'}}din 
         <br>
-        <strong class="total">{{totalDiscount | number:'1.2'}}din</strong>
+        <strong class="total">{{totalDiscount | number:'1.2-2'}}din</strong>
         <br>
-        Savings: {{totalWithoutDiscount - totalDiscount | number:'1.2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
+        Savings: {{(totalWithoutDiscount - totalDiscount) | number:'1.2-2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
     </tr>
   </table>
 </div>

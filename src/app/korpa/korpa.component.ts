@@ -39,6 +39,7 @@ export class KorpaComponent implements OnInit {
           this.data.movetoWishlist(this.username, id).subscribe((data2) => {
             this.refreshData();
             EmitterService.cart.emit('');
+            EmitterService.wishlist.emit('');
           });
         } else {
           alert('Book is alredy in Wishlist.');

@@ -101,7 +101,7 @@ app.post("/updatecart",(req,res) => {
             res.send(rows);
     })
 });
-app.get("/deletefromwishlist/:user/:book",(req,res) => {
+app.delete("/deletefromwishlist/:user/:book",(req,res) => {
     let params=req.params;
     mySqlConnection.query("delete from lista_zelja where user=? and book=?",
         [params.user,params.book],(err,rows,fields) => {
@@ -240,32 +240,25 @@ app.get("/listazelja/:username",(req,res) => {
 });
 app.post("/movetolistazelja",(req,res) => {
     let params=req.body;
-    let sql="select * from korpa where user=? and book=?";
-    let sql2="insert into lista_zelja(user,book,kolicina) values(?,?,?)";
+    let sql2="insert into lista_zelja(user,book,kolicina) values(?,?,1)";
     let sql3="delete from korpa where user=? and book=?"
     
-    mySqlConnection.query(sql,[params.username,params.id],(err,rows,fields) => {
-            
+    
+    mySqlConnection.query(sql2,[params.username,params.id],(err,rows,fields) =>{
         if(err)
-            res.send(err);
-        else  {
-            let kolicina = rows[0].kolicina;
-            mySqlConnection.query(sql2,[params.username,params.id,kolicina],(err,rows,fields) =>{
+            console.log(err);
+        else {
+            mySqlConnection.query(sql3,[params.username,params.id],(err,rows,fields) =>{
                 if(err)
                     console.log(err);
                 else {
-                    mySqlConnection.query(sql3,[params.username,params.id],(err,rows,fields) =>{
-                        if(err)
-                            console.log(err);
-                        else {
-                                console.log('Book move to wishlist.');
-                                res.send(rows);
-                            }
-                    });
-                }
+                        console.log('Book move to wishlist.');
+                        res.send(rows);
+                    }
             });
         }
     });
+        
 });
 app.post('/addtocart',(req,res)=>{
     let params=req.body;

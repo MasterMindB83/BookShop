@@ -85,7 +85,7 @@ export class DataService {
 
   }
   delecteWishlistBook(user, book) {
-    return this.http.get('http://localhost:3000/deletefromwishlist/' + user + '/' + book);
+    return this.http.delete('http://localhost:3000/deletefromwishlist/' + user + '/' + book);
   }
   getWishlistSumary(user) {
     return this.http.get('http://localhost:3000/wishlisttotal/' + user);

@@ -12,9 +12,9 @@
           <td class="top right bottom padding">
             {{book.kolicina}}
             <br>
-            <a (click)="moveTo()" class="hand">Move to Cart</a>
+            <a (click)="moveTo(book.id)" class="hand">Move to Cart</a>
             <br>
-            <a (click)="delete()" class="hand">Delete</a></td>
+            <a (click)="delete(book.id)" class="hand">Delete</a></td>
         <td class="top right bottom padding">{{book.total | number:'1.2'}}</td>
     </tr>
     <tr>

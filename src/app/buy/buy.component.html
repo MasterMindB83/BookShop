@@ -1,34 +1,65 @@
-<h1 class="headline">Cart</h1>
-<div *ngIf="username != 'null'">
-  <table class="table">
-    <tr>
-      <td colspan=2>Article</td>
-      <td>Amount</td>
-      <td>Total</td>
-    </tr>
-    <tr *ngFor="let book of books" class="row">
-        <td class="top left bottom padding"><img src="./assets/{{book.image}}" class="image"></td>
-        <td class="right width top bottom padding width2">{{book.name}}<br>
-          {{book.author}}</td>
-        <td class="top right bottom padding">{{book.kolicina}}</td>
-        <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}din
-            <br>
-            <a class="price">{{book.total| number:'1.2'}}din</a>
+<h1 class="headline">Personal data</h1>
+<table class="table">
+  <tr>
+    <td>
+        <table>
+            <tr>
+              <td>Name:</td>
+              <td><input type="text" [(ngModel)]="name"></td>
+            </tr>
+            <tr>
+              <td>E-mail:</td>
+              <td><input type="text" [(ngModel)]="e_mail"></td>
+            </tr>
+            <tr>
+              <td>Adress:</td>
+              <td><input type="text" [(ngModel)]="address"></td>
+            </tr>
+            <tr>
+              <td>City:</td>
+              <td><input type="text" [(ngModel)]="city"></td>
+            </tr>
+            <tr>
+              <td>Phone:</td>
+              <td><input type="text" [(ngModel)]="phone"></td>
+            </tr>
+          </table>
           <br>
-          Savings:{{(book.price * book.kolicina)-book.total | number:'1.2'}}din ({{((book.price * book.kolicina)-book.total)/(book.price * book.kolicina)*100 | number}}%)</td>
-    </tr>
-    <tr>
-      <td class="top bottom left padding"></td>
-      <td class="top bottom right padding float">Amount discount:
-        <br>
-        <a class="float">Total price:</a>
-        <br>
-      &nbsp;</td>
-      <td class="top right bottom padding" colspan="2">{{discount * total | number:'1.2'}}din 
-        <br>
-        {{totalDiscount | number:'1.2'}}din
-        <br>
-        Savings: {{totalWithoutDiscount - totalDiscount | number:'1.2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
-    </tr>
-  </table>
-</div>
+          <button (click)="buyBooks()" class="buy">Buy books</button>
+    </td>
+    <td>
+      <td>
+        <table>
+        <tr>
+          <td colspan=2>Article</td>
+          <td>Amount</td>
+          <td>Total</td>
+        </tr>
+        <tr *ngFor="let book of books" class="row">
+            <td class="top left bottom padding"><img src="./assets/{{book.image}}" class="image"></td>
+            <td class="right width top bottom padding width2">{{book.name}}<br>
+              {{book.author}}</td>
+            <td class="top right bottom padding">{{book.kolicina}}</td>
+            <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}din
+                <br>
+                <a class="price">{{book.total| number:'1.2'}}din</a>
+              <br>
+              Savings:{{(book.price * book.kolicina)-book.total | number:'1.2'}}din ({{((book.price * book.kolicina)-book.total)/(book.price * book.kolicina)*100 | number}}%)</td>
+        </tr>
+        <tr>
+          <td class="top bottom left padding"></td>
+          <td class="top bottom right padding float">Amount discount:
+            <br>
+            <a class="float">Total price:</a>
+            <br>
+          &nbsp;</td>
+          <td class="top right bottom padding" colspan="2">{{discount * total | number:'1.2'}}din 
+            <br>
+            {{totalDiscount | number:'1.2'}}din
+            <br>
+            Savings: {{totalWithoutDiscount - totalDiscount | number:'1.2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>

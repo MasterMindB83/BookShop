@@ -37,8 +37,8 @@
     padding-left: 450px;
 }
 .table{
+    padding-left: 150px;
     
-    padding-left: 300px;
 }
 .padding{
     padding: 10px;
@@ -58,4 +58,11 @@
 }
 .width2{
     width: 150px;
+}
+.buy{
+    height: 50px;
+    width: 200px;
+    background-color: orange;
+    color: white;
+    font-size: 30px;
 }

@@ -17,9 +17,16 @@ export class SidebarComponent implements OnInit {
   cartKolicina: number;
   wishlistTotal: number;
   wishlistKolicina: number;
+  discountAmount: number;
+  discountDiscount: number;
+  cartDiscount: number;
   constructor(private data: DataService, private router: Router) { }
 
   ngOnInit() {
+    this.cartTotal = 0;
+    this.cartKolicina = 0;
+    this.wishlistTotal = 0;
+    this.wishlistKolicina = 0;
     if (localStorage.getItem('username') !== 'null') {
       this.user = {
         username: localStorage.getItem('username'),
@@ -30,15 +37,10 @@ export class SidebarComponent implements OnInit {
         password: localStorage.getItem('password'),
         city: localStorage.getItem('city')
       };
+      this.getDiscount();
     } else {
       this.user = null;
     }
-    this.cartTotal = 0;
-    this.cartKolicina = 0;
-    this.wishlistTotal = 0;
-    this.wishlistKolicina = 0;
-    this.getCartSumary();
-    this.getWishlistSumary();
     EmitterService.login.subscribe((data) => {
       this.user = data;
       this.getCartSumary();
@@ -70,10 +72,16 @@ export class SidebarComponent implements OnInit {
       this.data.getCartSumary(this.user.username).subscribe((data) => {
         this.cartKolicina = data[0].kolicina;
         this.cartTotal = data[0].total;
+        if (this.cartKolicina >= this.discountAmount) {
+          this.cartDiscount = this.cartTotal - this.cartTotal * this.discountDiscount;
+        } else {
+          this.cartDiscount = this.cartTotal;
+        }
       });
     } else {
       this.cartTotal = 0;
       this.cartKolicina = 0;
+      this.cartDiscount = 0;
     }
   }
   getWishlistSumary() {
@@ -86,5 +94,13 @@ export class SidebarComponent implements OnInit {
       this.wishlistTotal = 0;
       this.wishlistKolicina = 0;
     }
+  }
+  getDiscount() {
+    this.data.getDiscount().subscribe((data) => {
+      this.discountAmount = data[0].amount;
+      this.discountDiscount = data[0].discount;
+      this.getCartSumary();
+      this.getWishlistSumary();
+    });
   }
 }
