@@ -11,7 +11,11 @@
         <td class="right width top bottom padding width2">{{book.name}}<br>
           {{book.author}}</td>
         <td class="top right bottom padding">{{book.kolicina}}</td>
-        <td class="top right bottom padding">{{book.total| number:'1.2'}}</td>
+        <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}din
+            <br>
+            <a class="price">{{book.total| number:'1.2'}}din</a>
+          <br>
+          Savings:{{(book.price * book.kolicina)-book.total | number:'1.2'}}din ({{((book.price * book.kolicina)-book.total)/(book.price * book.kolicina)*100 | number}}%)</td>
     </tr>
     <tr>
       <td class="top bottom left padding"></td>
@@ -20,9 +24,9 @@
         <a class="float">Total price:</a>
         <br>
       &nbsp;</td>
-      <td class="top right bottom padding" colspan="2">{{discount * total | number:'1.2'}} 
+      <td class="top right bottom padding" colspan="2">{{discount * total | number:'1.2'}}din 
         <br>
-        {{totalDiscount | number:'1.2'}}
+        {{totalDiscount | number:'1.2'}}din
         <br>
         Savings: {{totalWithoutDiscount - totalDiscount | number:'1.2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
     </tr>

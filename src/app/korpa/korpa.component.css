@@ -56,3 +56,13 @@
     color:white;
     font-size: 30px
 }
+.price{
+    color: blue;
+}
+.total{
+    color: orange;
+    font-size: 30px;
+}
+.height{
+    height: 120px;
+}

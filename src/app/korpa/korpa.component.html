@@ -11,17 +11,17 @@
         <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
         <td class="right width top bottom padding" (click)="navigate(book.id)">{{book.name}}<br>
           {{book.author}}</td>
-        <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2'}}</td>
+        <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2-2'}}din</td>
         <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">
           <br>
           <a (click)="moveTo()" class="hand">Move to Cart</a>
           <br>
           <a (click)="delete()" class="hand">Delete</a></td>
-        <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}
+        <td class="top right bottom padding">Price:{{book.price * book.kolicina | number:'1.2'}}din
           <br>
-          {{book.total| number:'1.2'}}
+          <a class="price">{{book.total| number:'1.2'}}din</a>
         <br>
-        Savings:{{(book.price * book.kolicina)-book.total | number:'1.2'}}({{((book.price * book.kolicina)-book.total)/(book.price * book.kolicina)*100 | number}}%)
+        Savings:{{(book.price * book.kolicina)-book.total | number:'1.2'}}din ({{((book.price * book.kolicina)-book.total)/(book.price * book.kolicina)*100 | number}}%)
       </td>
     </tr>
     <tr>
@@ -32,10 +32,13 @@
         <br>
         <a class="float">Total price:</a>
         <br>
-      &nbsp;</td>
-      <td class="top right bottom padding">{{discount * total | number:'1.2'}} 
+        &nbsp;
         <br>
-        {{totalDiscount | number:'1.2'}}
+        &nbsp;
+      &nbsp;</td>
+      <td class="top right bottom padding">{{discount * total | number:'1.2'}}din 
+        <br>
+        <strong class="total">{{totalDiscount | number:'1.2'}}din</strong>
         <br>
         Savings: {{totalWithoutDiscount - totalDiscount | number:'1.2'}}din ({{(totalWithoutDiscount - totalDiscount)/totalWithoutDiscount*100| number}}%)</td>
     </tr>
