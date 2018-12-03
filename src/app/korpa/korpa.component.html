@@ -7,9 +7,9 @@
       <td class="top right padding">Amount</td>
       <td class="top right padding">Total</td>
     </tr>
-    <tr *ngFor="let book of books" class="row">
+    <tr *ngFor="let book of books">
         <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
-        <td class="right width top bottom padding" (click)="navigate(book.id)">{{book.name}}<br>
+        <td class="right width top bottom padding" (click)="navigate(book.id)"><a class="blue">{{book.name}}</a><br>
           {{book.author}}</td>
         <td class="top right bottom padding">{{book.discount?book.discount:book.price | number:'1.2-2'}}din</td>
         <td class="top right bottom padding"><input type="number" [(ngModel)]="book.kolicina" class="numberwidth" (ngModelChange)="calculate(book.id)">

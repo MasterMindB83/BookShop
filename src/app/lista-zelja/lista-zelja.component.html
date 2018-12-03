@@ -2,8 +2,9 @@
 <div *ngIf="username != 'null'">
   <table class="table">
     <tr>
-      <td colspan=2>Article</td>
-      <td>Price</td>
+      <td colspan=2 class="top left right">Article</td>
+      <td class="top right">Amount</td>
+      <td class="top right">Price</td>
     </tr>
     <tr *ngFor="let book of books">
         <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
@@ -20,8 +21,7 @@
     <tr>
       <td></td>
       <td></td>
-      <td></td>
-      <td>Total price:</td>
+      <td class="left bottom right">Total price:</td>
       <td>{{total | number:'1.2'}}</td>
     </tr>
   </table>
