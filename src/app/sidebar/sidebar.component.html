@@ -14,10 +14,10 @@
     <table>
       <tr>
         <td routerLink="korpa"><img src="./assets/korpa.png"></td> 
-        <td routerLink="korpa">Cart({{cartKolicina}})<br>{{cartDiscount | number:'1.2-2'}} din</td>
+        <td routerLink="korpa">Cart(<a class="blue">{{cartKolicina}}</a>)<br><a class="blue">{{cartDiscount | number:'1.2-2'}} din</a></td>
         &nbsp;
         <td routerLink="listazelja"><img src="./assets/zelje.png"> </td>
-        <td routerLink="listazelja">Wishlist({{wishlistKolicina}})<br>{{wishlistTotal | number:'1.2'}} din</td>
+        <td routerLink="listazelja">Wishlist(<a class="blue">{{wishlistKolicina}}</a>)<br><a class="blue">{{wishlistTotal | number:'1.2'}} din</a></td>
     </tr>
   </table>
   </div>

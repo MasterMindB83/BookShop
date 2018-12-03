@@ -69,7 +69,6 @@ app.get("/wishlistbook/:username/:book",(req,res) => {
 });
 app.post("/addtowishlist",(req,res)=>{
     let params=req.body;
-    console.log('test');
     mySqlConnection.query("insert into lista_zelja (user, book, kolicina) values(?,?,1)",
         [params.user,params.book],(err,rows,fields) => {
             
@@ -304,7 +303,6 @@ app.post("/movetokorpa",(req,res) => {
         if(err)
             res.send(err);
         else  {
-            console.log('user:' +params.username + ' book:'+params.id);
             let kolicina = rows[0].kolicina;
             mySqlConnection.query(sql2,[params.username,params.id,kolicina],(err,rows,fields) =>{
                 if(err)

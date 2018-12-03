@@ -2,10 +2,10 @@
 <div *ngIf="username != 'null' && kolicina > 0">
   <table class="table">
     <tr>
-      <td colspan=2>Article</td>
-      <td>Price</td>
-      <td>Amount</td>
-      <td>Total</td>
+      <td colspan=2  class="left top right padding">Article</td>
+      <td class="top right padding">Price</td>
+      <td class="top right padding">Amount</td>
+      <td class="top right padding">Total</td>
     </tr>
     <tr *ngFor="let book of books" class="row">
         <td class="top left bottom padding" (click)="navigate(book.id)"><img src="./assets/{{book.image}}" class="image"></td>
